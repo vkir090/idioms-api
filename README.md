@@ -42,7 +42,7 @@ Ziel war es, eine einfache, aber stabile API zu bauen, die per Request zufällig
 
 ---
 
-## Beispiel-Request:
+## Beispiel-Request
 
 GET http://localhost:8080/api/idioms/search?query=cat
 
@@ -59,9 +59,12 @@ Antwort:
   }
 ]
 ```
+
 ---
 
 ## Projektstruktur
+
+```
 src/
  ├─ main/
  │   ├─ java/com/idioms/api/
@@ -73,25 +76,31 @@ src/
  │       ├─ application.yml
  │       └─ data/ (lokale CSV, nicht im Repo)
  └─ test/
+```
 
 ---
 
 ## Starten
+
+```bash
 ./gradlew bootRun
-Swagger-UI ist danach erreichbar unter
-👉 http://localhost:8080/swagger-ui.html
+```
+
+Swagger-UI ist danach erreichbar unter:  
+[http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+
 ---
 
 ## Daten
 
-Die API nutzt eine lokale PostgreSQL-Instanz.
-Der ursprüngliche Datensatz (idioms.csv) bleibt privat und wird nicht im Repository geteilt.
+Die API nutzt eine lokale PostgreSQL-Instanz.  
+Der ursprüngliche Datensatz (`idioms.csv`) bleibt **privat** und wird nicht im Repository geteilt.
 
 ---
 
-Autor
-Vladimir Kirizleev
-Java / Spring Boot Backend-Entwicklung · Datenlogik · API-Design
-github.com/kirizleev-portfolio
+## Autor
 
----
+**Vladimir Kirizleev**  
+Java / Spring Boot Backend-Entwicklung · Datenlogik · API-Design  
+[github.com/kirizleev-portfolio](https://github.com/kirizleev-portfolio)
+
