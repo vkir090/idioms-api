@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/idioms")
-@Tag(name = "Idioms API", description = "Endpoints zum Abrufen von Idioms")
+@Tag(name = "Idioms API", description = "REST-Endpoints zum Abrufen und Suchen von Idioms")
 public class IdiomController {
 
     private final IdiomService idiomService;
@@ -20,23 +20,22 @@ public class IdiomController {
         this.idiomService = idiomService;
     }
 
+    // Gibt zufällige Idioms zurück
     @GetMapping("/random")
-    @Operation(summary = "Zufällige Idioms abrufen – optional nach Häufigkeit gefiltert")
-    public List<Idiom> getRandomIdioms(
-            @Parameter(description = "Häufigkeit von 1 bis 5", example = "5")
+    @Operation(summary = "Zufällige Idioms abrufen")
+    public List<Idiom> getRandom(
             @RequestParam(defaultValue = "5") int frequency,
-
-            @Parameter(description = "Anzahl der Idioms", example = "10")
             @RequestParam(defaultValue = "10") int count) {
-        return idiomService.getRandomIdioms(frequency, count);
+
+        // kleine Schutzlogik für API
+        if (count > 100) count = 100;
+        return idiomService.findRandomIdioms(frequency, count);
     }
 
 
+    // Sucht Idioms nach Text oder Bedeutung
     @GetMapping("/search")
-    @Operation(summary = "Idioms nach Text oder Bedeutung suchen")
-    public List<Idiom> searchIdioms(
-            @Parameter(description = "Suchbegriff", example = "cat")
-            @RequestParam String query) {
+    public List<Idiom> search(@RequestParam String query) {
         return idiomService.searchIdioms(query);
     }
 }

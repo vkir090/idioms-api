@@ -9,21 +9,23 @@ import java.util.List;
 @Service
 public class IdiomService {
 
-    private final IdiomRepository idiomRepository;
+    private final IdiomRepository idiomRepo;
 
-    public IdiomService(IdiomRepository idiomRepository) {
-        this.idiomRepository = idiomRepository;
+    public IdiomService(IdiomRepository idiomRepo) {
+        this.idiomRepo = idiomRepo;
     }
 
-    public List<Idiom> getRandomIdioms(int frequency, int count) {
-        return idiomRepository.randomIdioms(frequency, count);
+    public List<Idiom> findRandomIdioms(int frequency, int count) {
+        return idiomRepo.randomIdioms(frequency, count);
     }
 
     public List<Idiom> searchIdioms(String query) {
         if (query == null || query.trim().length() < 3) {
-            throw new IllegalArgumentException("Suchbegriff muss mindestens 3 Buchstaben enthalten.");
+            throw new IllegalArgumentException("Suchbegriff zu kurz (min. 3 Zeichen).");
         }
-        return idiomRepository.search(query.trim());
+
+        String cleanQuery = query.trim();
+        return idiomRepo.search(cleanQuery);
     }
 }
 

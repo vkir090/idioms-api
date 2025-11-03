@@ -22,7 +22,7 @@ class IdiomServiceTest {
         int count = 3;
 
         // Act: Methode aufrufen
-        List<Idiom> idioms = idiomService.getRandomIdioms(frequency, count);
+        List<Idiom> idioms = idiomService.findRandomIdioms(frequency, count);
 
         // Assert: Prüfen, ob die Ergebnisse korrekt sind
         assertNotNull(idioms, "Liste darf nicht null sein");
@@ -38,7 +38,7 @@ class IdiomServiceTest {
         int invalidFrequency = 0;
         int count = 5;
 
-        List<Idiom> idioms = idiomService.getRandomIdioms(invalidFrequency, count);
+        List<Idiom> idioms = idiomService.findRandomIdioms(invalidFrequency, count);
 
         // sollte einfach leer zurückgeben, kein Fehler
         assertNotNull(idioms);
